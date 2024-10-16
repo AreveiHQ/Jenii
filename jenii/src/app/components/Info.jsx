@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaFacebook, FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Info = () => {
   return <>
@@ -77,33 +77,34 @@ function SocialIcon({ href, Icon }) {
   );
 };
 
+
 const FormComponent = () => {
+  
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Send a POST request to the API endpoint
-    const res = await fetch('/api/', {
+    setMessage("Loading....!")
+    fetch('https://sheetdb.io/api/v1/6u3i5giokoqqj', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
       },
-
-      body: JSON.stringify({ email, phone }),
-    });
-
-    const result = await res.json();
-
-    if (res.ok) {
-      setMessage(result.message || 'Form submitted successfully!');
-      setEmail('');
-      setPhone('');
-    } else {
-      setMessage('Error submitting the form');
-    }
+      body: JSON.stringify({
+          data: [
+              {
+                  'Email': email,
+                  'Phone':phone
+              }
+          ]
+      })
+  })
+    .then((response) => response.json())
+    .then((data) => {setMessage("You have Added to WishList");setEmail('');setPhone('')});
   };
 
   return (
@@ -150,6 +151,8 @@ const FormComponent = () => {
     </div>
   );
 };
+
+
 
 const Footer = () => {
   return (
