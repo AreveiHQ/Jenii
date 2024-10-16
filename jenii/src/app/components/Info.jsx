@@ -50,11 +50,16 @@ function Slideshow() {
       </div>
 
       {/* Ring Image */}
+      <div className="flex flex-col w-[70vw]  ">
       <Image
+      width={300}
+      height={300}
         src={ring}
         alt="Diamond Ring"
-        className="w-auto h-[300px] md:h-[500px] object-contain"
+        className="w-30 h-30 mx-auto "
       />
+      <div className="h-10 w-[50%] mx-auto bg-[radial-gradient(49.69%_46.99%_at_49.42%_42.82%,#AAAAAA_0%,#B6B6B6_8%,#D5D5D5_33%,#ECECEC_57%,#fddbc6_80%,transparent_100%)]"></div>
+      </div>
 
       {/* Right Arrow Button */}
       <div className="absolute right-6 top-1/2 transform -translate-y-1/2">
@@ -136,7 +141,7 @@ const FormComponent = () => {
 
       {/* Submit Button */}
       <button
-        className="text-[#C41E56] w-full bg-[#F9E8E8] text-lg font-semibold py-3 rounded-md shadow-md hover:bg-[#a71745] hover:text-white transition"
+        className="text-[#C41E56] w-full bg-[#FFFFFF] text-lg font-semibold py-3 rounded-md shadow-md hover:bg-[#a71745] hover:text-white transition"
         onClick={handleSubmit}
       >
         Join the Waitlist
